@@ -1,0 +1,40 @@
+<p>由于<script type="math/tex" id="MathJax-Element-2111">\Theta \sim U(0,2\pi)</script>, 所以 <br>
+<script type="math/tex; mode=display" id="MathJax-Element-2112">p(\Theta) = \begin{cases}
+\displaystyle \frac{1}{2\pi} & 0 \lt \Theta \lt 2\pi\\\
+\displaystyle0 & else
+\end{cases}</script> <br>
+而<script type="math/tex" id="MathJax-Element-2113">g(\Theta)=X(t+\tau)X(t) = a^2\cos(\omega (t+\tau)+\Theta)\cos(\omega t + \Theta)</script>,故 <br>
+<script type="math/tex; mode=display" id="MathJax-Element-2114">
+\begin{aligned}
+E[g(\Theta)]&=\int_0^{2\pi}g(\Theta)p(\Theta)d\Theta\\
+&=\int_0^{2\pi} a^2\cos(\omega (t+\tau)+\theta)\cos(\omega t + \theta) \frac{1}{2\pi}d\theta\\
+&=\frac{a^2}{2\pi}\int_0^{2\pi} \cos(\omega (t+\tau)+\theta)\cos(\omega t + \theta)d\theta\\
+\end{aligned}
+</script> <br>
+又由于 <br>
+<script type="math/tex; mode=display" id="MathJax-Element-2115">
+\cos\alpha+\cos\beta=2\cos\frac{\alpha+\beta}{2}\cos\frac{\alpha-\beta}{2}
+</script> <br>
+<script type="math/tex; mode=display" id="MathJax-Element-2116">
+\begin{cases}
+\displaystyle{
+\frac{\alpha+\beta}{2}=\omega (t+\tau)+\theta}\\
+\displaystyle{
+\frac{\alpha-\beta}{2}=\omega t + \theta}
+\end{cases}
+</script> <br>
+解得<script type="math/tex" id="MathJax-Element-2117">\alpha=(2t+\tau)\omega+2\theta, \quad \beta=\tau\omega</script>. <br>
+<script type="math/tex; mode=display" id="MathJax-Element-2118">
+\cos(\omega (t+\tau)+\theta)\cos(\omega t + \theta)=\frac{1}{2}[\cos((2t+\tau)\omega+2\theta)+\cos\tau\omega]
+</script> <br>
+<script type="math/tex; mode=display" id="MathJax-Element-2119">
+\begin{aligned}
+E[g(\Theta)]&=\int_0^{2\pi}g(\Theta)p(\Theta)d\Theta\\
+&=\int_0^{2\pi} a^2\cos(\omega (t+\tau)+\theta)\cos(\omega t + \theta) \frac{1}{2\pi}d\theta\\
+&=\frac{a^2}{2\pi}\int_0^{2\pi} \cos(\omega (t+\tau)+\theta)\cos(\omega t + \theta)d\theta\\
+&=\frac{a^2}{4\pi}\int_0^{2\pi} [\cos((2t+\tau)\omega+2\theta)+\cos\tau\omega ]d\theta\\
+&=\frac{a^2}{4\pi}\int_0^{2\pi} \cos((2t+\tau)\omega+2\theta)d\theta+\frac{a^2}{4\pi}\int_0^{2\pi} \cos\tau\omega d\theta\\
+&=\frac{a^2}{4\pi}\int_0^{2\pi} \cos\tau\omega d\theta\\
+&=\frac{a^2}{2}\cos\tau\omega
+\end{aligned}
+</script></p>
