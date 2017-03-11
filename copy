@@ -1,0 +1,6 @@
+copy <- function(x, header = FALSE) {
+  data <- .Internal(paste(x, '\t', NULL))
+  if (header)
+    data <- c(paste(names(x), collapse = '\t'), data)
+  writeClipboard(data)
+}
