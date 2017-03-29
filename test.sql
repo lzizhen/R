@@ -58,10 +58,6 @@ INSERT INTO Course VALUES(1, '数据结构', 101, 4);
 INSERT INTO Course VALUES(2, '数据库', 102, 4);
 INSERT INTO Course VALUES(3, '离散数学', 103, 4);
 INSERT INTO Course VALUES(4, 'C语言程序设计', 101, 2);
-INSERT INTO Course VALUES (1,'数据结构', 101, 4);
-INSERT INTO Course VALUES (2,'数据库', 102, 4);
-INSERT INTO Course VALUES (3,'离散数学', 103, 4);
-INSERT INTO Course VALUES (4,'C语言程序设计', 101, 2);
 
 INSERT INTO SC VALUES (1001,1,80);
 INSERT INTO SC VALUES (1001,2,85);
