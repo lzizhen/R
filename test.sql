@@ -80,9 +80,103 @@ INSERT INTO Teacher VALUES (104,'刘田', 20);
 INSERT INTO Dept VALUES (10,'计算机科学与技术');
 INSERT INTO Dept VALUES (20,'信息');
 
+/*修改数据*/
+UPDATE SC
+	SET GRADE = GRADE + 2 
+	WHERE CNO IN
+		(SELECT CNO
+			FROM Course, Teacher
+			WHERE Course.TNO = Teacher.TNO
+			AND Teacher.TNAME = '张星');
+
 /*删除数据*/
-DELETE FROM SC WHERE SNO IN 
+DELETE FROM SC WHERE SNO IN /*运行不了*/
 	(SELECT SNO
 	FROM Student
 	WHERE SNAME = '马朝阳'
 )；
+
+
+/*查询操作*/
+/*单表查询*/
+
+/*查询所有学生的信息*/
+SELECT * 
+FROM Student;
+
+/*查询所有女生的女性*/
+SELECT SNAME
+FROM Student
+WHERE SEX = '女';
+
+/*查询成绩在80～89分之间的所有学生的选课记录，查询结果按照成绩的降序排列。*/
+SELECT * 
+FROM SC
+WHERE GRADE >= 80 AND GRADE <= 89
+ORDER BY GRADE DESC;
+
+/*查询各个系的学生人数*/
+SELECT DEPTNO, count(SNO)
+FROM Student
+GROUP BY DEPTNO;
+
+/*连接查询*/
+/*查询信息系年龄在21岁以下的女生的姓名及年龄*/
+SELECT SNAME, AGE
+FROM Student, Dept
+WHERE Student.DEPTNO = Dept.DEPTNO
+	AND Dept.DNAME = '信息'
+	AND AGE <= 21
+	AND SEX = '女'；
+
+/*嵌套查询*/
+/*查询选修课总学分在10学分以下的学生的姓名*/
+SELECT SNAME
+FROM Student
+WHERE SNO IN
+	(SELECT SNO
+		FROM SC, Course
+		WHERE SC.SNO = Course.CNO
+		GROUP BY SNO
+		HAVING SUM(CREDIT) <10);
+
+
+
+
+/*查询各门课程的最高成绩的学生的姓名及其成绩*/
+
+SELECT CNO, SNAME, GRADE
+FROM Student, SC, SCX
+WHERE SCX.CNO = SCX.SNO AND SCX.GRADE IN 
+	(SELECT MAX(GRADE)
+		FROM SC SCY
+		WHERE SCX.CNO = SCY.CNO
+		GROUP BY CNO);
+
+/*查询选修了1001号学生所选修的全部课程的学生的学号*/
+SELECT SNO
+FROM Student
+WHERE NOT EXISTS
+	(SELECT *
+		FROM SC SCX
+		WHERE SCX.SNO = 1001 AND NOT EXISTS
+			(SELECT *
+				FROM SC SCY
+				WHERE SCY.SNO = Student.SNO AND SCY.CNO = SCX.CNO));
+
+
+
+/*查询选修了张星老师所开设的全部课程的学生的姓名*/
+
+SELECT SNAME
+FROM Student
+WHERE NOT EXISTS
+	(SELECT *
+		FROM Course
+		WHERE TNO IN 
+		(SELECT TNO
+		FROM Teacher
+		WHERE TNAME = '张星') AND NOT EXISTS
+			(SELECT * 
+				FROM SC
+				WHERE SC.SNO = Student.SNO AND SC.CNO = Course.CNO));
